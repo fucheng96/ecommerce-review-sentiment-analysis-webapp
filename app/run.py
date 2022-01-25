@@ -95,7 +95,7 @@ def index():
 
     # Create visuals using Plotly
     graphs = [
-        # Graph 1: Distribution of Message Genres
+        # Graph 1: Distribution of Review Text Length
         {
             'data': [
                 Bar(
@@ -115,7 +115,7 @@ def index():
             }
         },
 
-        # Graph 2: Distribution of Response Categories
+        # Graph 2: Distribution of Review Scores
         {
             'data': [
                 Bar(
