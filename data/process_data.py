@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from sqlalchemy import create_engine
 
+
 def load_data(order_reviews_filepath,
               orders_filepath,
               order_items_filepath,
@@ -70,16 +71,23 @@ def load_data(order_reviews_filepath,
     return review_df
 
 
-def remove_duplicates(df):
+def clean_data(df):
 
     """
     INPUT:
         df - Combined dataset containing customer reviews and other key columns
     OUTPUT:
-        df_cleansed - Cleansed dataset with no duplicated reviews
+        df_cleaned - Cleansed dataset with no duplicated and missing reviews
     """
 
-    return df.drop_duplicates(subset=['review_id', 'review_comment_message'])
+    # Remove missing reviews from review dataset
+    df_cleaned = df[~df['review_comment_message'].isnull()]
+
+    # Drop duplicates
+    df_cleaned.drop_duplicates(subset=['review_id', 'review_comment_message'], inplace=True)
+
+    return df_cleaned
+
 
 def positive_review_label(df):
 
@@ -123,50 +131,47 @@ def save_data(df, database_filename):
 
 def main():
 
-    try:
-        # Setting the directories
-        cd = os.getcwd()
+    # Setting the directories
+    cd = os.getcwd()
 
-        # Getting the respective filepaths
-        order_reviews_filepath = cd + '\\olist_order_reviews_dataset.csv'
-        orders_filepath = cd + '\\olist_orders_dataset.csv'
-        order_items_filepath = cd + '\\olist_order_items_dataset.csv'
-        products_filepath = cd + '\\olist_products_dataset.csv'
-        product_name_eng_filepath = cd + '\\product_category_name_translation.csv'
-        customers_filepath = cd + '\\olist_customers_dataset.csv'
+    # Getting the respective filepaths
+    order_reviews_filepath = cd + '\\olist_order_reviews_dataset.csv'
+    orders_filepath = cd + '\\olist_orders_dataset.csv'
+    order_items_filepath = cd + '\\olist_order_items_dataset.csv'
+    products_filepath = cd + '\\olist_products_dataset.csv'
+    product_name_eng_filepath = cd + '\\product_category_name_translation.csv'
+    customers_filepath = cd + '\\olist_customers_dataset.csv'
 
-        # Load the data
-        print('Loading datasets...'
-              .format(order_reviews_filepath,
-                      orders_filepath,
-                      order_items_filepath,
-                      products_filepath,
-                      product_name_eng_filepath,
-                      customers_filepath))
+    # Load the data
+    print('Loading datasets...'
+          .format(order_reviews_filepath,
+                  orders_filepath,
+                  order_items_filepath,
+                  products_filepath,
+                  product_name_eng_filepath,
+                  customers_filepath))
 
-        df = load_data(order_reviews_filepath,
-                      orders_filepath,
-                      order_items_filepath,
-                      products_filepath,
-                      product_name_eng_filepath,
-                      customers_filepath)
+    df = load_data(order_reviews_filepath,
+                  orders_filepath,
+                  order_items_filepath,
+                  products_filepath,
+                  product_name_eng_filepath,
+                  customers_filepath)
 
-        # Perform data cleaning
-        print('Cleaning data...')
+    # Perform data cleaning
+    print('Cleaning data...')
 
-        # Remove duplicates & label positive sentiment
-        df = remove_duplicates(df)
-        df['positive_review_ind'] = df.apply(positive_review_label, axis=1)
+    # Remove duplicates & label positive sentiment
+    df = clean_data(df)
+    df['positive_review_ind'] = df.apply(positive_review_label, axis=1)
+    df['review_message_length'] = df['review_comment_message'].apply(lambda x: len(x.split()))
 
-        # Saving data into SQLite database
-        database_filename = 'ecomm_por_cust_review.db'
-        print('Saving data...\n    DATABASE: {}'.format(database_filename))
-        save_data(df, database_filename)
+    # Saving data into SQLite database
+    database_filename = 'ecomm_por_cust_review.db'
+    print('Saving data...\n    DATABASE: {}'.format(database_filename))
+    save_data(df, database_filename)
 
-        print('Cleaned data saved to database!')
-
-    except:
-        print('Something went wrong, please check the syntax or the file paths')
+    print('Cleaned data saved to database!')
 
 
 if __name__ == '__main__':
