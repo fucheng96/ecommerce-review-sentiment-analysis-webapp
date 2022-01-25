@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Disaster Response Category Predictor</title>
+    <title>Portugese Sentiment Predictor</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,11 +20,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Disaster Response Categorizer</a>
+            <a class="navbar-brand" href="/">Portugese E-Commerce Customer Review Sentiment Classifier</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="https://www.udacity.com/">Made with Udacity</a></li>
+                <li><a href="https://www.kaggle.com/olistbr/brazilian-ecommerce">Brazilian E-Commerce Public Dataset by Olist</a></li>
                 <li><a href="https://github.com/fucheng96">My GitHub Profile</a></li>
             </ul>
         </div>
@@ -34,8 +34,8 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1 class="text-center">Disaster Response Categorizer</h1>
-        <p class="text-center">Analyzing message data for disaster response</p>
+        <h1 class="text-center">Portugese E-Commerce Customer Review Sentiment Classifier</h1>
+        <p class="text-center">Analyzing sentiment for the review</p>
         <hr />
 
         <div class="row">
@@ -43,7 +43,7 @@
                 <form action="/go" method="get">
                     <input type="text" class="form-control form-control-lg" name="query" placeholder="Enter a message to classify">
                     <div class="col-lg-offset-5">
-                        <button type="submit" class="btn btn-lg btn-success">Classify Message</button>
+                        <button type="submit" class="btn btn-lg btn-success">Predict Customer Review's Sentiment</button>
                     </div>
                 </form>
             </div>
@@ -57,7 +57,7 @@
 <div class="container">
     {% block content %}
         <div class="page-header">
-            <h1 class="text-center">Overview of Training Dataset</h1>
+            <h1 class="text-center">Overview of Training Dataset from Olist</h1>
         </div>
     {% endblock %}
 

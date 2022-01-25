@@ -1,4 +1,5 @@
 # Import libraries
+import os
 import re
 import json
 import plotly
@@ -8,17 +9,19 @@ from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from sqlalchemy import create_engine
+from sklearn.base import BaseEstimator, TransformerMixin
 
 # Import natural language toolkit libraries
 import nltk
-from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 nltk.download(['punkt', 'wordnet', 'stopwords', 'averaged_perceptron_tagger'])
 
 
 app = Flask(__name__)
 
-def tokenize(text):
+def tokenizer(text):
 
     """
     INPUT:
@@ -27,10 +30,13 @@ def tokenize(text):
         clean_tokens - List of tokens extracted from the text message
     """
 
-    # Detect & remove punctuations from the message
+    # Remove punctuations
     detected_punctuations = re.findall('[^a-zA-Z0-9]', text)
     for punctuation in detected_punctuations:
-        text = text.replace(punctuation, " ")
+        text = text.replace(punctuation, ' ')
+
+    # Remove words with single letters
+    text = ' '.join([w for w in text.split() if len(w) > 1])
 
     # Tokenize the words
     tokens = word_tokenize(text)
@@ -38,36 +44,64 @@ def tokenize(text):
     # Lemmanitizer to reduce words to its stems
     lemmatizer = WordNetLemmatizer()
 
-    # Return list of normalized tokens reduced to its stems
-    cleaned_tokens = [lemmatizer.lemmatize(w).lower().strip() for w in tokens]
+    # List of clean tokens
+    clean_tokens = [lemmatizer.lemmatize(w).lower().strip() for w in tokens]
 
-    return cleaned_tokens
+    # Remove stopwords in Portugese
+    por_stopwords = stopwords.words('portuguese')
+    for st in por_stopwords:
+        if st in clean_tokens:
+            clean_tokens.remove(st)
+
+    return clean_tokens
 
 
-# Load data
-engine = create_engine('sqlite:///data/DisasterResponse.db')
-df = pd.read_sql_table('DisasterResponse', engine)
+class GetReviewLength(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        X_text_length = pd.Series(X).apply(lambda x: len(x.split()))
+        return pd.DataFrame(X_text_length)
+
+
+# Setting directories
+cd = os.getcwd()
+database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cust_review.db'
+print(database_filepath)
+# database_filename = database_filepath.split('\\data\\')[1].replace('.db', '')
+
+# Create SQL engine to import SQLite database
+engine = create_engine('sqlite:///' + database_filepath)
+conn = engine.raw_connection()
+cur = conn.cursor()
+
+# Import data table from database
+database_filename = database_filepath.split('\\data\\')[1].replace('.db', '')
+sql_command = "SELECT * FROM " + database_filename
+df = pd.read_sql(sql_command, con=conn)
+conn.commit()
+conn.close()
 
 # Load model
-model = joblib.load('models/classifier.pkl')
+model_filepath = cd.replace('webapp\\app', 'webapp\\models') + '\\sentiment_classifier.pkl'
+model = joblib.load(model_filepath)
 
-
-# Index webpage to display cool visuals and receives user input text for model
+# Index webpage to display bar graphs and and receives user input text for model
 @app.route('/')
 @app.route('/index')
 
 def index():
 
     # Extract data needed for visuals
-    # Graph 1: Distribution of Message Genres
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
+    # Graph 1: Distribution of review text length
+    review_length_counts = df.groupby('review_message_length').count()['review_id']
+    review_text_length = list(review_length_counts.index)
 
     # Graph 2: Distribution of Response Categories
-    n_response_cols = 36
-    resp_cat_counts = df.iloc[:,-n_response_cols:].sum()
-    resp_cat_counts = resp_cat_counts.sort_values(ascending=False)
-    resp_cat_names = list(resp_cat_counts.index)
+    review_score_counts = df.groupby('review_score').count()['review_id']
+    review_score_counts = review_score_counts.sort_values(ascending=True)
+    review_score = list(review_score_counts.index)
 
     # Create visuals using Plotly
     graphs = [
@@ -75,18 +109,18 @@ def index():
         {
             'data': [
                 Bar(
-                    x = genre_names,
-                    y = genre_counts
+                    x = review_text_length,
+                    y = review_length_counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Distribution of Review Text Length',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Length of Review"
                 }
             }
         },
@@ -95,18 +129,18 @@ def index():
         {
             'data': [
                 Bar(
-                    x = resp_cat_names,
-                    y = resp_cat_counts
+                    x = review_score,
+                    y = review_score_counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Response Categories',
+                'title': 'Distribution of Review Scores',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Response Category"
+                    'title': "Review Scores"
                 }
             }
         }
@@ -128,15 +162,21 @@ def go():
     # Save user input in query
     query = request.args.get('query', '')
 
-    # Use model to predict classification for query
-    classification_labels = model.predict([query])[0]
-    classification_results = dict(zip(df.columns[4:], classification_labels))
+    # Use model to predict sentiment for query
+    sentiment_label = model.predict([query])[0]
+
+    # Mapping the labels and get its sentiments
+    sentiments = {
+        0: "Sentimento Negativo",
+        1: "Sentimento Positivo"
+    }
+    sentiment_result = sentiments.get(sentiment_label)
 
     # This will render the go.html template file
     return render_template(
         'go.html',
         query = query,
-        classification_result = classification_results
+        sentiment_result = sentiment_result
     )
 
 
