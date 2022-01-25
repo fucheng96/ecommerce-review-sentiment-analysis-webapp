@@ -72,15 +72,6 @@ database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cus
 # Create SQL engine to import SQLite database
 engine = create_engine('sqlite:///' + database_filepath)
 df = pd.read_sql_table('ecomm_por_cust_review', engine)
-# conn = engine.raw_connection()
-# cur = conn.cursor()
-#
-# # Import data table from database
-# database_filename = database_filepath.split('\\data\\')[1].replace('.db', '')
-# sql_command = "SELECT * FROM " + database_filename
-# df = pd.read_sql(sql_command, con=conn)
-# conn.commit()
-# conn.close()
 
 # Load model
 model_filepath = cd.replace('webapp\\app', 'webapp\\models') + '\\sentiment_classifier.pkl'
