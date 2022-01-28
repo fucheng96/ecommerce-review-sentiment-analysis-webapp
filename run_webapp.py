@@ -66,23 +66,6 @@ class GetReviewLength(BaseEstimator, TransformerMixin):
         return pd.DataFrame(X_text_length)
 
 
-# Setting directories
-cd = os.getcwd()
-database_filepath = cd +'/data/ecomm_por_cust_review.db'
-
-# Create SQL engine to import SQLite database
-print(database_filepath)
-engine = create_engine('sqlite:///' + database_filepath)
-df = pd.read_sql_table('ecomm_por_cust_review', engine)
-
-# Import data
-# database_filepath = cd + '/data/ecomm_por_cust_review.csv'
-# df = pd.read_csv(database_filepath)
-
-# Load model
-model_filepath = cd + '/models/sentiment_classifier.pkl'
-model = pickle.load(open(model_filepath, 'rb'))
-
 # Index webpage to display bar graphs and and receives user input text for model
 @app.route('/')
 @app.route('/index')
@@ -176,9 +159,27 @@ def go():
     )
 
 
+def main():
+    # Setting directories
+    cd = os.getcwd()
+    database_filepath = cd +'/data/ecomm_por_cust_review.db'
+
+    # Create SQL engine to import SQLite database
+    print(database_filepath)
+    engine = create_engine('sqlite:///' + database_filepath)
+    df = pd.read_sql_table('ecomm_por_cust_review', engine)
+
+    # Import data
+    # database_filepath = cd + '/data/ecomm_por_cust_review.csv'
+    # df = pd.read_csv(database_filepath)
+
+    # Load model
+    model_filepath = cd + '/models/sentiment_classifier.pkl'
+    model = pickle.load(open(model_filepath, 'rb'))
+
 # def main():
 #     app.run(host='0.0.0.0', port=3001, debug=True)
 #
 #
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
