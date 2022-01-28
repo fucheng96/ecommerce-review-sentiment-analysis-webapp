@@ -123,13 +123,12 @@ def build_model():
     ])
 
     # List down the parameters for Grid Search
-    # parameters = {
-    #     'clf__n_estimators': [100, 200],
-    #     'clf__min_samples_split': [2, 4]
-    # }
-    #
-    # return GridSearchCV(pipeline, param_grid=parameters, cv=4)
-    return pipeline
+    parameters = {
+        'clf__n_estimators': [100, 200],
+        'clf__min_samples_split': [2, 4]
+    }
+
+    return GridSearchCV(pipeline, param_grid=parameters, cv=4)
 
 
 def evaluate_model(model, X_test, y_test):
