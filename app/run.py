@@ -76,7 +76,7 @@ cd = os.getcwd()
 
 # Import data
 # database_filepath = cd.replace('/app/app/', '/app/data/') + 'ecomm_por_cust_review.csv'
-database_filepath = cd + 'data/ecomm_por_cust_review.csv'
+database_filepath = cd + '/data/ecomm_por_cust_review.csv'
 df = pd.read_csv(database_filepath)
 
 # Load model
