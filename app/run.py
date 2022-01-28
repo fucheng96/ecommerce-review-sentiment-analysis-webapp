@@ -70,6 +70,7 @@ cd = os.getcwd()
 database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cust_review.db'
 
 # Create SQL engine to import SQLite database
+print(database_filepath)
 engine = create_engine('sqlite:///' + database_filepath)
 df = pd.read_sql_table('ecomm_por_cust_review', engine)
 
