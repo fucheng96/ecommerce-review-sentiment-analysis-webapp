@@ -123,12 +123,13 @@ def build_model():
     ])
 
     # List down the parameters for Grid Search
-    parameters = {
-        'clf__n_estimators': [100, 200],
-        'clf__min_samples_split': [2, 4]
-    }
-
-    return GridSearchCV(pipeline, param_grid=parameters, cv=4)
+    # parameters = {
+    #     'clf__n_estimators': [100, 200],
+    #     'clf__min_samples_split': [2, 4]
+    # }
+    #
+    # return GridSearchCV(pipeline, param_grid=parameters, cv=4)
+    return pipeline
 
 
 def evaluate_model(model, X_test, y_test):
@@ -174,7 +175,7 @@ def main():
     print('Loading data...\n    DATABASE: {}'.format(database_filepath))
     X, y = load_data(database_filepath)
     X_train, X_test, y_train, y_test = train_test_split(X, y,
-                                                        test_size=0.25,
+                                                        test_size=0.3,
                                                         random_state=23)
 
     print('Building model...')
