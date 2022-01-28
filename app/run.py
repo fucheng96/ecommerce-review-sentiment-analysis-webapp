@@ -5,6 +5,7 @@ import json
 import plotly
 import pandas as pd
 import joblib
+import pickle
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
@@ -80,7 +81,7 @@ df = pd.read_sql_table('ecomm_por_cust_review', engine)
 
 # Load model
 model_filepath = cd + '/models/sentiment_classifier.pkl'
-model = joblib.load(model_filepath)
+model = pickle.load(model_filepath)
 
 # Index webpage to display bar graphs and and receives user input text for model
 @app.route('/')
