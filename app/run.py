@@ -79,7 +79,7 @@ df = pd.read_sql_table('ecomm_por_cust_review', engine)
 # df = pd.read_csv(database_filepath)
 
 # Load model
-model_filepath = cd + 'models/sentiment_classifier.pkl'
+model_filepath = cd + '/models/sentiment_classifier.pkl'
 model = joblib.load(model_filepath)
 
 # Index webpage to display bar graphs and and receives user input text for model
