@@ -67,12 +67,16 @@ class GetReviewLength(BaseEstimator, TransformerMixin):
 
 # Setting directories
 cd = os.getcwd()
-database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cust_review.db'
+# database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cust_review.db'
+#
+# # Create SQL engine to import SQLite database
+# print(database_filepath)
+# engine = create_engine('sqlite:///' + database_filepath)
+# df = pd.read_sql_table('ecomm_por_cust_review', engine)
 
-# Create SQL engine to import SQLite database
-print(database_filepath)
-engine = create_engine('sqlite:///' + database_filepath)
-df = pd.read_sql_table('ecomm_por_cust_review', engine)
+# Import data
+database_filepath = cd.replace('webapp\\app', 'webapp\\data') + '\\ecomm_por_cust_review.csv'
+df = pd.read_csv(database_filepath)
 
 # Load model
 model_filepath = cd.replace('webapp\\app', 'webapp\\models') + '\\sentiment_classifier.pkl'

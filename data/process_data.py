@@ -128,6 +128,9 @@ def save_data(df, database_filename):
     database_filename_ori = database_filename.replace('.db', '')
     df.to_sql(database_filename_ori, engine, index=False, if_exists='replace')
 
+    # Output csv file
+    df.to_csv(database_filename.replace('.db', '.csv'), index=False)
+
 
 def main():
 
