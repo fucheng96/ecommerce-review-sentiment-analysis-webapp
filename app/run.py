@@ -81,7 +81,7 @@ df = pd.read_sql_table('ecomm_por_cust_review', engine)
 
 # Load model
 model_filepath = cd + '/models/sentiment_classifier.pkl'
-model = pickle.load(model_filepath)
+model = pickle.load(open(model_filepath, 'rb'))
 
 # Index webpage to display bar graphs and and receives user input text for model
 @app.route('/')
