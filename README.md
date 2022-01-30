@@ -9,23 +9,38 @@
 ## Overview
 The main objective of this project is to perform Sentiment Analysis on customer reviews on a Brazilian E-Commerce platform **[Olist](https://olist.com/pt-br/)** using Natural Language Processing ('NLP'), to determine if the reviews are positive or negative overall.
 
+### Data
 The dataset contains information of 100k orders from 2016 to 2018 such as order status, price, payment and freight performance to customer location, product attributes, etc. The focal point here would be the **reviews written by the customers**. Once the customer receives the product, or when the estimated delivery date is due (whether customer receives the product or not), the customer gets a satisfaction survey by email to describe the purchase experience and write down some comments.
 
+### Limitation
 Note that one limitation in this model is that the response variable of whether the review is positive or negative was determined based on review score with:
 - Positive review if the review score is 4 or 5
 - Negative review if the review score is 1, 2 or 3.
 
 This assumption is necessary for supervised learning to enable the model to learn if it is a positive review or not. Due to time constraint, each review is not manually assessed to label it as positive or not. However, this assumption is reasonable as customers would tend to write positive review given a high score (4 or 5).
 
+### Model Results
+Multiple models were tested: 
+- Random Forest
+- AdaBoost
+- Gradient Boosting
+- Neural Network
+- Ensemble Stacking (Combination between Random Forest & AdaBoost with Logistic Regression as final estimator)
+
+From the findings:
+- AdaBoost & Gradient Boosting takes a short time, but poor accuracy
+- Ensemble Stacking & Neural Network achieves good accuracy levels, but take a long time
+- Random Forest not only achieves good accuracy levels on par with more complex model, it achieved in a short time as AdaBoost & Gradient Boosting. Therefore, it is chosen (along with GridSearch for further model improvements).
+
 There are 3 main components to this project:
 1. **ETL Pipeline**
-   Extract data from given data source, transform the data through data wrangling and load them in a SQLite database.
+   Extract data from given data source, combine between multiple datasets, transform the data through data wrangling and load them in a SQLite database.
    
 2. **ML Pipeline**
-   Train a machine learning model to classify the message categor(ies) given input message.
+   Train a machine learning model to classify the sentiment (positive or negative) given the Portugese (Brazilian) review message.
    
 3. **Web App**
-   Output review or comment message categories instantly in real-time using ML pipeline.
+   Output review or comment message sentiment instantly in real-time using ML pipeline.
 
 ## Installation
 
@@ -45,11 +60,11 @@ There are 3 main components to this project:
 
     - To run ETL pipeline that cleans data and stores in SQLite database.
       
-      `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+      `python data/process_data.py`
       
-    - To run ML pipeline that trains classifier using AdaBoost and saves in pickle format (.pkl).
+    - To run ML pipeline that trains classifier using Random Forest with Grid Search and saves in pickle format (.pkl).
       
-      `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+      `python models/train_classifier.py`
 
 2. Run the following command in the project's root directory to run your web app.
    
@@ -69,11 +84,11 @@ There are 3 main components to this project:
 
 1. Screenshot of landing page. 
 
-   ![Screenshot 1](https://github.com/fucheng96/disaster-response-webapp/blob/main/screenshots/main_page.jpeg?raw=true)
+   ![Screenshot 1](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/screenshots/main-page.PNG)
 
 2. Screenshots of dataset used to train the ML pipeline.
 
-   ![Screenshot 2](https://github.com/fucheng96/disaster-response-webapp/blob/main/screenshots/training_dataset_overview.PNG?raw=true)
+   ![Screenshot 2](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/screenshots/training-dataset-overview.PNG)
 
 ## Acknowledgements
 
