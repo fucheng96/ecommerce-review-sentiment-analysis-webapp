@@ -20,26 +20,19 @@ Note that one limitation in this model is that the response variable of whether 
 This assumption is necessary for supervised learning to enable the model to learn if it is a positive review or not. Due to time constraint, each review is not manually assessed to label it as positive or not. However, this assumption is reasonable as customers would tend to write positive review given a high score (4 or 5).
 
 ### Model Results
-Multiple models were tested: 
-- Random Forest
-- AdaBoost
-- Gradient Boosting
-- Neural Network
-- Ensemble Stacking (Combination between Random Forest & AdaBoost with Logistic Regression as final estimator)
-
-From the findings:
-- AdaBoost & Gradient Boosting takes a short time, but poor accuracy
-- Ensemble Stacking & Neural Network achieves good accuracy levels, but take a long time
-- Random Forest not only achieves good accuracy levels on par with more complex model, it achieved in a short time as AdaBoost & Gradient Boosting. Therefore, it is chosen (along with GridSearch for further model improvements).
+Multiple models were tested - Random Forest, AdaBoost, Gradient Boosting, Neural Network and Ensemble Stacking (Combination between Random Forest & AdaBoost with Logistic Regression as final estimator). From the findings:
+- AdaBoost & Gradient Boosting takes a short time, but achieves slightly lower accuracies around 84%.
+- Ensemble Stacking & Neural Network achieves good accuracy levels around 87%, but took significantly longer runtime.
+- Random Forest not only achieves good accuracy levels around 87% on par with more complex models, it achieved that in a short time as AdaBoost & Gradient Boosting. Therefore, it is the chosen as the model in the Machine Learning ('ML') Pipeline (along with GridSearch for further model improvements).
 
 There are 3 main components to this project:
 1. **ETL Pipeline**<br>
    Extract data from given data source, combine between multiple datasets, transform the data through data wrangling and load them in a SQLite database.
    
-2. **ML Pipeline**
+2. **ML Pipeline**<br>
    Train a machine learning model to classify the sentiment (positive or negative) given the Portugese (Brazilian) review message.
    
-3. **Web App**
+3. **Web App**<br>
    Output review or comment message sentiment instantly in real-time using ML pipeline.
 
 ## Installation
