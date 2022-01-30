@@ -7,9 +7,15 @@
 5. [Acknowledgements](#Acknowledgements)
 
 ## Overview
-The purpose of this project is to categorize messages received during a disaster to speed up rescue mission by respective organizations in terms of medical supplies, water supplies or fire fighting etc. 
+The main objective of this project is to perform Sentiment Analysis on customer reviews on a Brazilian E-Commerce platform **[Olist](https://olist.com/pt-br/)** using Natural Language Processing ('NLP'), to determine if the reviews are positive or negative overall.
 
-This is part of Data Scientist Nanodegree Program by Udacity in collaboration with [Figure Eight aka Appen](https://appen.com/). The data were provided by Figure Eight and it contains tweet messages from real-life disasters and its respective labelled categories.
+The dataset contains information of 100k orders from 2016 to 2018 such as order status, price, payment and freight performance to customer location, product attributes, etc. The focal point here would be the **reviews written by the customers**. Once the customer receives the product, or when the estimated delivery date is due (whether customer receives the product or not), the customer gets a satisfaction survey by email to describe the purchase experience and write down some comments.
+
+Note that one limitation in this model is that the response variable of whether the review is positive or negative was determined based on review score with:
+- Positive review if the review score is 4 or 5
+- Negative review if the review score is 1, 2 or 3.
+
+This assumption is necessary for supervised learning to enable the model to learn if it is a positive review or not. Due to time constraint, each review is not manually assessed to label it as positive or not. However, this assumption is reasonable as customers would tend to write positive review given a high score (4 or 5).
 
 There are 3 main components to this project:
 1. **ETL Pipeline**
@@ -19,13 +25,13 @@ There are 3 main components to this project:
    Train a machine learning model to classify the message categor(ies) given input message.
    
 3. **Web App**
-   Output message categories instantly in real-time using ML pipeline.
+   Output review or comment message categories instantly in real-time using ML pipeline.
 
 ## Installation
 
 1. Clone this git repository to your local workspace.
    
-   `git clone https://github.com/fucheng96/disaster-response-webapp.git`
+   `git clone https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp.git`
    
 2. Install following dependencies in addition to the standard libraries from Anaconda distribution of Python.
 
@@ -67,8 +73,8 @@ There are 3 main components to this project:
 
 2. Screenshots of dataset used to train the ML pipeline.
 
-   ![Screenshot 3](https://github.com/fucheng96/disaster-response-webapp/blob/main/screenshots/training_dataset_overview.PNG?raw=true)
+   ![Screenshot 2](https://github.com/fucheng96/disaster-response-webapp/blob/main/screenshots/training_dataset_overview.PNG?raw=true)
 
 ## Acknowledgements
 
-Kudos to Figure Eight for providing the labelled message data to ease model training, and the team behind the [Udacity Data Scientist Nanodegree Program](https://www.udacity.com/course/data-scientist-nanodegree--nd025) for the code structure and materials for reference!
+Kudos to Olist for releasing a [public dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce). It contains multiple datasets which provide many exciting areas to explore apart from NLP such as sales prediction, customer segmentation etc.
