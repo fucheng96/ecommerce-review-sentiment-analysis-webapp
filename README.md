@@ -33,7 +33,7 @@ From the findings:
 - Random Forest not only achieves good accuracy levels on par with more complex model, it achieved in a short time as AdaBoost & Gradient Boosting. Therefore, it is chosen (along with GridSearch for further model improvements).
 
 There are 3 main components to this project:
-1. **ETL Pipeline**
+1. **ETL Pipeline**<br>
    Extract data from given data source, combine between multiple datasets, transform the data through data wrangling and load them in a SQLite database.
    
 2. **ML Pipeline**
