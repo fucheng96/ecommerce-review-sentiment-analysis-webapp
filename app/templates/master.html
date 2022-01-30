@@ -5,74 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Portugese Sentiment Predictor</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Portugese Review Sentiment Predictor</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+          integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
-<body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Portugese E-Commerce Customer Review Sentiment Classifier</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="https://www.kaggle.com/olistbr/brazilian-ecommerce">Brazilian E-Commerce Public Dataset by Olist</a></li>
-                <li><a href="https://github.com/fucheng96">My GitHub Profile</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<div class="jumbotron">
-    <div class="container">
-        <h1 class="text-center">Portugese E-Commerce Customer Review Sentiment Classifier</h1>
-        <p class="text-center">Analyzing sentiment for the review</p>
-        <hr />
-
-        <div class="row">
-            <div class="col-lg-12 form-group-lg">
-                <form action="/go" method="get">
-                    <input type="text" class="form-control form-control-lg" name="query" placeholder="Enter a message to classify">
-                    <div class="col-lg-offset-5">
-                        <button type="submit" class="btn btn-lg btn-success">Predict Customer Review's Sentiment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        {% block message %}
-        {% endblock %}
+<!-- Navigation Bar -->
+<div class="container">
+    <div class="row nav" style="padding:1rem; background-color:#020202; color:#a9a9a9; height:30px">
+      <p class="u-pull-left">Portugese E-Commerce Customer Review Sentiment Classifier</p>
+      <ul class="u-pull-right" style="list-style:none; display:flex;">
+        <li style="margin-right: 1rem;"><a href="https://www.kaggle.com/olistbr/brazilian-ecommerce">
+          Brazilian E-Commerce Public Dataset by Olist</a></li>
+        <li><a href="https://github.com/fucheng96">My GitHub Profile</a></li>
+      </ul>
     </div>
 </div>
 
-<div class="container">
+<body style="padding:1rem; background-color:#161616; color:white">
+  <div class="container" style="padding-bottom:3rem">
+    <h3 class="text-center">Portugese E-Commerce Customer Review Sentiment Classifier</h3>
+    <hr />
+
+    <form action="/go" method="get">
+      <div class="nine columns">
+        <label for="portugeseReviewInput">Portugese Review or Comment</label>
+        <input type="text"
+               class="u-full-width"
+               name="query"
+               placeholder="Enter a message to classify e.g. Este é um produto tão bom!">
+      </div>
+      <div class="three columns">
+        <label for="predictButton"
+               style="color:white">Press Button Below</label>
+        <button type="submit"
+                class="u-full-width"
+                style="color:white; background-color:#1e90ff"
+                >Predict Sentiment</button>
+      </div>
+    </form>
+    {% block message %}
+    {% endblock %}
+  </div>
+
+  <div class="container">
     {% block content %}
-        <div class="page-header">
-            <h1 class="text-center">Overview of Training Dataset from Olist</h1>
-        </div>
+      <div class="page-header">
+          <h4 class="text-center">Overview of Training Dataset from Olist</h4>
+      </div>
     {% endblock %}
 
     {% for id in ids %}
-        <div id="{{id}}"></div>
+      <div id="{{id}}" style="border-style: solid; color:#e0e0e0"></div>
     {% endfor %}
-</div>
+  </div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     const graphs = {{graphJSON | safe}};
     const ids = {{ids | safe}};
     for(let i in graphs) {
         Plotly.plot(ids[i], graphs[i].data, graphs[i].layout);
     }
-</script>
+  </script>
 
 </body>
 </html>

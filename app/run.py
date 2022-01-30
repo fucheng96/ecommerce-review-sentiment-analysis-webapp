@@ -68,20 +68,15 @@ class GetReviewLength(BaseEstimator, TransformerMixin):
 
 # Setting directories
 cd = os.getcwd()
-database_filepath = cd +'/data/ecomm_por_cust_review.db'
+database_filepath = cd + '\\data\\ecomm_por_cust_review.db'
 
 # Create SQL engine to import SQLite database
 print(database_filepath)
 engine = create_engine('sqlite:///' + database_filepath)
 df = pd.read_sql_table('ecomm_por_cust_review', engine)
 
-# Import data
-# database_filepath = cd + '/data/ecomm_por_cust_review.csv'
-# df = pd.read_csv(database_filepath)
-
 # Load model
-model_filepath = cd + '/models/sentiment_classifier.pkl'
-# model = pickle.load(open(model_filepath, 'rb'))
+model_filepath = cd + '\\models\\sentiment_classifier.pkl'
 with open(model_filepath, "rb") as m:
     model = pickle.load(m)
 
@@ -178,9 +173,9 @@ def go():
     )
 
 
-# def main():
-#     app.run(host='0.0.0.0', port=3001, debug=True)
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    app.run(host='0.0.0.0', port=3001, debug=True)
+
+
+if __name__ == '__main__':
+    main()

@@ -168,8 +168,8 @@ def main():
 
     # Setting the directories
     cd = os.getcwd()
-    database_filepath = cd.replace('models', 'data') + '\\ecomm_por_cust_review.db'
-    model_filepath = cd + '\\sentiment_classifier.pkl'
+    database_filepath = cd + '\\data\\ecomm_por_cust_review.db'
+    model_filepath = cd + '\\models\\sentiment_classifier.pkl'
 
     print('Loading data...\n    DATABASE: {}'.format(database_filepath))
     X, y = load_data(database_filepath)

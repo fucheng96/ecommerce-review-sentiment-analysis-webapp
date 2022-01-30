@@ -135,7 +135,7 @@ def save_data(df, database_filename):
 def main():
 
     # Setting the directories
-    cd = os.getcwd()
+    cd = os.getcwd() + '\\data'
 
     # Getting the respective filepaths
     order_reviews_filepath = cd + '\\olist_order_reviews_dataset.csv'
