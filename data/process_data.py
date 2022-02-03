@@ -80,8 +80,9 @@ def clean_data(df):
         df_cleaned - Cleansed dataset with no duplicated and missing reviews
     """
 
-    # Remove "\r\n"
-    df['review_comment_message'] = df['review_comment_message'].replace(r'\s+|\\n', '', regex=True)
+    # Remove "\r\n" by replacing it with ' ' and remove any trailing spaces
+    df['review_comment_message'] = df['review_comment_message'].replace(r'\s+|\\n', ' ', regex=True)
+    df['review_comment_message'] = df['review_comment_message'].str.strip()
 
     # Remove missing reviews from review dataset
     df_cleaned = df[~df['review_comment_message'].isnull()]

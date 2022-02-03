@@ -16,19 +16,19 @@ More details can be found in the [Jupyter Notebook here](https://github.com/fuch
 There are 3 main components to this project:
 1. **ETL Pipeline**<br>
    Extract data from given data source, combine between multiple datasets, transform the data through data wrangling and load them in a SQLite database.
-   
+
 2. **ML Pipeline**<br>
    Train a machine learning model to classify the sentiment (positive or negative) given the Portugese (Brazilian) review message.
-   
+
 3. **Web App**<br>
    Output review or comment message sentiment instantly in real-time using ML pipeline.
 
 ## Installation
 
 1. Clone this git repository to your local workspace.
-   
+
    `git clone https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp.git`
-   
+
 2. Install following dependencies in addition to the standard libraries from Anaconda distribution of Python.
 
     - Natural Language Process Libraries - [NLTK](https://www.nltk.org/)
@@ -36,40 +36,49 @@ There are 3 main components to this project:
     - Web App using Python - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
     - Data Visualization - [Plotly](https://plotly.github.io/plotly.py-docs/index.html)
 
+3. Install [Git Large File Transfer ("LFS")](https://git-lfs.github.com/) to upload the 190MB-sized model (in .pkl format) to Github. Below are the steps taken:<br>
+    a. Install Git LFS in the Command Prompt using the command `git lfs install`
+    b. Head to directory of working folder and enter the command `git lfs track "*.pkl"` in Command Prompt to enable Git LFS to track files in ".pkl" format, which will create a text file named ".gitattributes.txt"
+    c. Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
+
 ## Program Execution
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in SQLite database.
-      
+
       `python data/process_data.py`
-      
+
     - To run ML pipeline that trains classifier using Random Forest with Grid Search and saves in pickle format (.pkl).
-      
+
       `python models/train_classifier.py`
 
 2. Run the following command in the project's root directory to run your web app.
-   
+
    `python app/run.py`
 
 3. Go to http://0.0.0.0:3001/ to view the web app.
-   
+
    If you are using Windows and unable to access http://0.0.0.0:3001/, you may replace "0.0.0.0" with your local IPv4 address which should looks like "192.XXX.X.XXX". Actual link will then be http://192.XXX.X.XXX:3001/. To get IPv4 address, follow the steps below:
-   
+
    a. Go to Command Prompt by typing `cmd` in the search bar.
-   
+
    b. Type `ipconfig` and press enter.
-   
+
    c. Look for "IPv4 Address" which looks like "192.XXX.X.XXX".
 
 ## Web App Screenshots
 
-1. Screenshot of landing page. 
+1. Screenshot of landing page.
 
    ![Screenshot 1](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/screenshots/main-page.PNG)
 
-2. Screenshots of dataset used to train the ML pipeline.
+2. Screenshot of overview of dataset used to train the ML pipeline.
 
    ![Screenshot 2](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/screenshots/training-dataset-overview.PNG)
+
+3. Screenshot of ML pipeline query results.
+
+   ![Screenshot 3](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/screenshots/sample-results.PNG)
 
 ## Acknowledgements
 
