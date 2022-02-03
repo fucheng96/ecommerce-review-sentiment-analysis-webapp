@@ -46,7 +46,8 @@ There are 3 main components to this project:
 
 ## Folder Directory
 
-- [app](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app)
+- [app](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app)<br>
+  Consists of Python file that launch the web app hosted locally and its related HTML files on the web layout and handling of queries.
    - templates
       - go.html
       - master.html
