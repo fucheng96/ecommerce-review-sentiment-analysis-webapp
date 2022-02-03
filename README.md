@@ -8,6 +8,7 @@
 6. [Acknowledgements](#Acknowledgements)
 
 ## Overview
+
 The main objective of this project is to perform Sentiment Analysis on customer reviews on a Brazilian E-Commerce platform **[Olist](https://olist.com/pt-br/)** using Natural Language Processing ('NLP'), to determine if the reviews are positive or negative.
 
 The dataset contains information of 100k orders from 2016 to 2018 such as order status, price, payment and freight performance to customer location, product attributes, etc. The focal point here would be the **reviews written by the customers**. Once the customer receives the product, or when the estimated delivery date is due (whether customer receives the product or not), the customer gets a satisfaction survey by email to describe the purchase experience and write down some comments.
@@ -44,18 +45,34 @@ There are 3 main components to this project:
     3.  Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
 
 ## Folder Directory
+
 - [app](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app)
-   - [templates](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app/templates)
-      - [go.html](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/app/templates/go.html)
-      - [master.html](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/app/templates/master.html)
-   - [run.py](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app/templates)
+   - templates
+      - go.html
+      - master.html
+   - run.py
 - [data](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/data)
+   - olist_customers_dataset.csv
+   - olist_order_items_dataset.csv
+   - olist_order_reviews_dataset.csv
+   - olist_orders_dataset.csv
+   - olist_products_dataset.csv
+   - product_category_name_translation.csv
+   - process_data.py
+   - ecomm_por_cust_review.db
 - [models](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/models)
+   - train_classifier.py
+   - sentiment_classifier.pkl
+   - model_results_table.xlsx
 - [screenshots](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/screenshots)
+   - main-page.PNG
+   - sample-results.PNG
+   - training-dataset-overview.PNG 
 - [review-sentiment-analysis-nlp.ipynb](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb)
 - [.gitattributes](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/.gitattributes)
 
 ## Program Execution
+
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in SQLite database.
