@@ -73,8 +73,9 @@ There are 3 main components to this project:
    - sample-results.PNG
    - training-dataset-overview.PNG 
 - [review-sentiment-analysis-nlp.ipynb](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb)<br>
-  
+  This notebook contains all the details of this project from Problem Statement and Strategy to Exploratory Data Analysis and Model Comparisons. 
 - [.gitattributes](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/.gitattributes)<br>
+  A text file that specifies the format of files to be tracked by Git LFS during uploads, which is generated after step 2 above under installation of Git LFS.
 
 ## Program Execution
 
@@ -118,4 +119,4 @@ There are 3 main components to this project:
 
 ## Acknowledgements
 
-Kudos to Olist for releasing a [public dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce). It contains multiple datasets which provide many exciting areas to explore apart from NLP such as sales prediction, customer segmentation etc.
+Kudos to Olist for releasing a [public dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce). It contains multiple datasets an e-commerce platform may store, which provide many exciting areas to explore apart from NLP such as sales prediction, customer segmentation etc.
