@@ -2,9 +2,10 @@
 
 1. [Overview](#Overview)
 2. [Installation](#Installation)
-3. [Program Execution](#Program-Execution)
-4. [Web App Screenshots](#Web-App-Screenshots)
-5. [Acknowledgements](#Acknowledgements)
+3. [Folder Directory](#Folder-Directory)
+4. [Program Execution](#Program-Execution)
+5. [Web App Screenshots](#Web-App-Screenshots)
+6. [Acknowledgements](#Acknowledgements)
 
 ## Overview
 The main objective of this project is to perform Sentiment Analysis on customer reviews on a Brazilian E-Commerce platform **[Olist](https://olist.com/pt-br/)** using Natural Language Processing ('NLP'), to determine if the reviews are positive or negative.
@@ -36,10 +37,14 @@ There are 3 main components to this project:
     - Web App using Python - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
     - Data Visualization - [Plotly](https://plotly.github.io/plotly.py-docs/index.html)
 
-3. Install [Git Large File Transfer ("LFS")](https://git-lfs.github.com/) to upload the 190MB-sized model (in .pkl format) to Github. Below are the steps taken:<br>
-    a. Install Git LFS in the Command Prompt using the command `git lfs install`
-    b. Head to directory of working folder and enter the command `git lfs track "*.pkl"` in Command Prompt to enable Git LFS to track files in ".pkl" format, which will create a text file named ".gitattributes.txt"
-    c. Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
+3. Install [Git Large File Transfer ("LFS")](https://git-lfs.github.com/) to upload the 190MB-sized model (in .pkl format) to Github. Below are the steps taken:
+
+    1. Install Git LFS in the Command Prompt using the command `git lfs install`.
+    2. Head to directory of working folder and enter the command `git lfs track "*.pkl"` in Command Prompt to enable Git LFS to track files in ".pkl" format, which will create a text file named ".gitattributes.txt".
+    3.  Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
+
+## Folder Directory
+
 
 ## Program Execution
 1. Run the following commands in the project's root directory to set up your database and model.
