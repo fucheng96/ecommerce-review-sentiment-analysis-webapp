@@ -38,9 +38,9 @@ There are 3 main components to this project:
 
 3. Install [Git Large File Transfer ("LFS")](https://git-lfs.github.com/) to upload the 190MB-sized model (in .pkl format) to Github. Below are the steps taken:
 
-    a. Install Git LFS in the Command Prompt using the command `git lfs install`.<br>
-    b. Head to directory of working folder and enter the command `git lfs track "*.pkl"` in Command Prompt to enable Git LFS to track files in ".pkl" format, which will create a text file named ".gitattributes.txt"<br>
-    c. Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
+    1. Install Git LFS in the Command Prompt using the command `git lfs install`.
+    2. 2. Head to directory of working folder and enter the command `git lfs track "*.pkl"` in Command Prompt to enable Git LFS to track files in ".pkl" format, which will create a text file named ".gitattributes.txt".
+    3.  Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
 
 ## Program Execution
 1. Run the following commands in the project's root directory to set up your database and model.
