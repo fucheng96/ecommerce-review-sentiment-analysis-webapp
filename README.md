@@ -52,7 +52,8 @@ There are 3 main components to this project:
       - go.html
       - master.html
    - run.py
-- [data](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/data)
+- [data](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/data)<br>
+  Consists of Olist's public dataset downloaded from Kaggle, Python file that processes the raw data and saves it in SQLite database. 
    - olist_customers_dataset.csv
    - olist_order_items_dataset.csv
    - olist_order_reviews_dataset.csv
@@ -61,16 +62,19 @@ There are 3 main components to this project:
    - product_category_name_translation.csv
    - process_data.py
    - ecomm_por_cust_review.db
-- [models](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/models)
+- [models](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/models)<br>
+  Consists of the Python file that specifies the text preparation and Machine Learning pipeline, the model saved in pickle format and results table that shows the comparison between various models explored in the [Jupyter Notebook here](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb).
    - train_classifier.py
    - sentiment_classifier.pkl
    - model_results_table.xlsx
-- [screenshots](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/screenshots)
+- [screenshots](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/screenshots)<br>
+  Consists of the screenshots of the web app to be used in this README file.
    - main-page.PNG
    - sample-results.PNG
    - training-dataset-overview.PNG 
-- [review-sentiment-analysis-nlp.ipynb](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb)
-- [.gitattributes](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/.gitattributes)
+- [review-sentiment-analysis-nlp.ipynb](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb)<br>
+  
+- [.gitattributes](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/.gitattributes)<br>
 
 ## Program Execution
 
