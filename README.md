@@ -44,7 +44,16 @@ There are 3 main components to this project:
     3.  Be sure to track ".gitattributes.txt" file using `git add .gitattributes`, before the usual commit and push to  GitHub.
 
 ## Folder Directory
-
+- [app](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app)
+   - [templates](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app/templates)
+      - [go.html](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/app/templates/go.html)
+      - [master.html](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/app/templates/master.html)
+   - [run.py](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/app/templates)
+- [data](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/data)
+- [models](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/models)
+- [screenshots](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/tree/main/screenshots)
+- [review-sentiment-analysis-nlp.ipynb](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/review-sentiment-analysis-nlp.ipynb)
+- [.gitattributes](https://github.com/fucheng96/ecommerce-review-sentiment-analysis-webapp/blob/main/.gitattributes)
 
 ## Program Execution
 1. Run the following commands in the project's root directory to set up your database and model.
